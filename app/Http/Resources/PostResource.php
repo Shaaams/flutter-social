@@ -21,6 +21,7 @@ class PostResource extends JsonResource
             'post_author'  => new AuthorResource($this->author),
             'post_body'    => $this->body,
             'post_status'  => $this->status,
+            'post_likes'   => $this->likes,
             'post_created' => $this->created_at->toDayDateTimeString(),
             'post_comment' => CommentResource::collection($this->comments)
 

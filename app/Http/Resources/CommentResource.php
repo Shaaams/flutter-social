@@ -17,10 +17,11 @@ class CommentResource extends JsonResource
     {
         //return parent::toArray($request);
         $comment = [
-            'comment_id'     => $this->id,
-            'comment_author' => new AuthorResource($this->author),
-            'comment_created'   => $this->created_at->toDayDateTimeString(),
-            'comment_body'   => $this->body,
+            'comment_id'      => $this->id,
+            'comment_author'  => new AuthorResource($this->author),
+            'comment_likes'   => $this->likes,
+            'comment_created' => $this->created_at->toDayDateTimeString(),
+            'comment_body'    => $this->body,
         ];
 
         if($this->comments->count() > 0)
