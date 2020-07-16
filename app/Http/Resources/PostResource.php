@@ -17,10 +17,11 @@ class PostResource extends JsonResource
         //return parent::toArray($request);
 
         return [
-            'post_id'     => $this->id,
-            'author_id'   => $this->user_id,
-            'post_body'   => $this->body,
-            'post_status' => $this->status,
+            'post_id'      => $this->id,
+            'post_author'  => new AuthorResource($this->author),
+            'post_body'    => $this->body,
+            'post_status'  => $this->status,
+            'post_created' => $this->created_at->toDayDateTimeString(),
             'post_comment' => CommentResource::collection($this->comments)
 
 
