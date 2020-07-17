@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
@@ -25,9 +26,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        return new PostResource(
+            Post::create([
+                'user_id'  => 150,
+                'body'     => $request->body,
+                'status'   => $request->has('status') ? $request->status : 'draft'
+            ])
+        );
     }
 
     /**
@@ -38,7 +45,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return new PostResource($post);
     }
 
     /**
